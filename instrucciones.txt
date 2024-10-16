@@ -1,0 +1,43 @@
+El contenido del archivo debe leerse y almacenarse utilizando estructuras de datos tipo árbol binario de
+búsqueda donde cada nodo corresponde a un director. El árbol debe ordenarse alfabéticamente de acuerdo
+al nombre de los directores. Cada director posee una lista enlazada de sus películas. Los listados de películas
+deben ordenarse por orden alfabético de acuerdo al título. Así, cada vez que se encuentra un nuevo director
+en el archivo debe crearse un nodo nuevo con su correspondiente lista nueva e insertarse en la posición debida
+del árbol. A su vez, cuando se encuentra un director repetido, debe buscarse en el árbol e insertar la película
+ordenadamente en el listado.
+Una vez leído el archivo completo, i.e., listo el árbol de directores, se debe crear un segundo árbol ordenado
+según el promedio de ratings de las películas del director. Para esto, debe implementarse una copia del árbol
+recorriendo el árbol de directores en pre-orden.
+Una vez creados los dos árboles, el árbol de directores y el árbol de ratings se deben implementar las
+siguientes acciones de usuario:
+
+sd director : buscar director en el árbol de nombres y mostrar sus películas. (
+    sd director
+    pelicula1 pelicula2 ...
+)
+
+sm pelicula: buscar película en el árbol de directores y mostrar información de esta en consola
+(título, director, rating) (
+    sm pelicula
+    titulo / director / rating
+)
+
+br n: mostrar n directores con mejores ratings en el árbol de ratings. n no puede tomar valores mayores
+que la cantidad de directores. (
+    br 3
+    (1) director1
+    (2) director2
+    (3) director3
+)
+
+wr n: mostrar n directores con peores ratings en el árbol de ratings. n no puede tomar valores mayores
+que la cantidad de directores. Considerando un árbol de m directores la salida sería como se muestra a
+continuación. (
+    wr 3
+    (m) director1
+    (m -1) director2
+    (m -2) director3
+)
+
+ e: terminar ejecución.
+
