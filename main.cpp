@@ -16,6 +16,6 @@ int main(){
         return 1;
     }
     getline (file, cant_pelis); //obtener el valor de cantidad de lineas
-    int max_pelis = stoi(cant_pelis); 
+    int max_pelis = stoi(cant_pelis); //pasarlo a entero 
     return 0;
 } 
