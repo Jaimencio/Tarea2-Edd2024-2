@@ -5,77 +5,108 @@ using namespace std;
 //todos estos metodos los hizo github copilot, asi que hay que revisarlos bien
 Director::Director(){
     /*
+    //inicializa cada parametro en null de la clase
     head = nullptr;
     curr = nullptr;
     tail = nullptr;
     size = 0;
+    nombre_director = "";
+    rating_promedio = 0;
     */
 }
 Director::~Director(){
     /*
-    lNodo * temp = head;
+    //crea un nodo temporal al inicio de la lista
+    lNodo* temp = head;
+    //se crea un segundo nodo temporal para ir manteniendo el registro de la lista y elimina los nodos
     while (temp != nullptr){
-        lNodo * temp2 = temp;
+        lNodo* temp2 = temp;
         temp = temp->sig;
         delete temp2;
     }
+    //vuelve los parametros a null
+    head = nullptr;
+    curr = nullptr;
+    tail = nullptr;
+    size = 0;
+    nombre_director = "";
+    rating_promedio = 0;
     */
 }
-Director::agregar_pelicula(Pelicula * pelicula){
+//agrega la pelicula de manera del append
+void Director::agregar_pelicula(Pelicula* pelicula){
     /*
-    lNodo * nuevo = new lNodo;
+    //crea un nuevo nodo de lista
+    lNodo* nuevo = new lNodo;
+    //le asigna la pelicula correspondiente al nodo
     nuevo->val = pelicula;
+    //hace la referencia al siguiente nodo en null
     nuevo->sig = nullptr;
+    //si la lista esta vacia, el nuevo nodo es la cabeza y la cola
     if (head == nullptr){
         head = nuevo;
         tail = nuevo;
     } else {
+        //lo agrega al final de la lista
         tail->sig = nuevo;
+        //lo convierte en la cola
         tail = nuevo;
     }
+    //aumenta el tamaño de la lista
     size++;
     */
 }
-Director::calcular_rating_promedio(){
+void Director::calcular_rating_promedio(){
     /*
-    lNodo * temp = head;
+    //crea un nodo temporal para comenzar la suma de ratings de todas las peliculas
+    lNodo* temp = head;
     float suma = 0;
     while (temp != nullptr){
+        //se añade el rating a la suma total y pasa al siguiente nodo
         suma += temp->val->rating;
         temp = temp->sig;
     }
-    float promedio = suma / size;
-    cout << "El rating promedio de " << nombre_director << " es: " << promedio << endl;
+    //saca el promedio
+    rating_promedio = suma / size;
+
     */
 }
-Director::ordenar(){
+void Director::ordenar(){
     /*
-    lNodo * temp = head;
-    lNodo * temp2 = head;
+    //crea dos nodos en la cabeza de la lista
+    lNodo* temp = head;
+    lNodo* temp2 = head;
+    //entra al while siempre y cuando el head no sea null
     while (temp != nullptr){
         while (temp2 != nullptr){
+        //si el rating del PRIMER nodo es MAYOR al rating del SEGUNDO nodo, se intercambian
             if (temp->val->rating > temp2->val->rating){
-                Pelicula * aux = temp->val;
+                Pelicula* aux = temp->val;
                 temp->val = temp2->val;
                 temp2->val = aux;
             }
+            //se desplaza en uno el segundo nodo
             temp2 = temp2->sig;
         }
+        //tras recorrer toda la lista con el segundo nodo, se DESPLAZA en uno el PRIMER nodo
         temp = temp->sig;
     }
     */
 }
-Director::mostrar_peliculas(){
+void Director::mostrar_peliculas(){
     /*
-    lNodo * temp = head;
+    //crea un nodo temporal en la cabeza de la lista
+    lNodo* temp = head;
     while (temp != nullptr){
-        cout << temp->val->nombre << " " << temp->val->director << " " << temp->val->rating << endl;
+        //pasa de uno en uno cada pelicula del director
+        cout << temp->val->nombre << endl;
         temp = temp->sig;
     }
     */
 } 
 Arboles::Arboles(){
     /*
+    //inicializa todos los parametros de ambos arboles en null
     root_1 = nullptr;
     curr_1 = nullptr;
     size_1 = 0;
@@ -86,23 +117,24 @@ Arboles::Arboles(){
 }
 Arboles::~Arboles(){
     /*
-    aNodo * temp = root_1;
+    //REVISAR ESTO!!!! BORRAR EN POST-ORDEN
+    aNodo* temp = root_1;
     while (temp != nullptr){
-        aNodo * temp2 = temp;
+        aNodo* temp2 = temp;
         temp = temp->der;
         delete temp2;
     }
     temp = root_2;
     while (temp != nullptr){
-        aNodo * temp2 = temp;
+        aNodo* temp2 = temp;
         temp = temp->der;
         delete temp2;
     }
     */
 }
-Arboles::insertar_pelicula(Pelicula * pelicula){
+void Arboles::insertar_pelicula(Pelicula * pelicula){
     /*
-    aNodo * nuevo = new aNodo;
+    aNodo* nuevo = new aNodo;
     nuevo->val = new Director;
     nuevo->val->nombre_director = pelicula->director;
     nuevo->val->agregar_pelicula(pelicula);
@@ -134,18 +166,18 @@ Arboles::insertar_pelicula(Pelicula * pelicula){
     size_1++;
     */
 }
-Arboles::copiar_arbol(){
+void Arboles::copiar_arbol(){
     /*
-    aNodo * temp = root_1;
+    aNodo* temp = root_1;
     while (temp != nullptr){
         insertar_pelicula(temp->val->head->val);
         temp = temp->der;
     }
     */
 }
-Arboles::buscar_director(string director){
+Director* Arboles::buscar_director(string director){
     /*
-    aNodo * temp = root_1;
+    aNodo* temp = root_1;
     while (temp != nullptr){
         if (temp->val->nombre_director == director){
             return temp->val;
@@ -159,11 +191,11 @@ Arboles::buscar_director(string director){
     return nullptr;
     */
 }
-Arboles::buscar_pelicula(string pelicula){
+Pelicula* Arboles::buscar_pelicula(string pelicula){
     /*
-    aNodo * temp = root_1;
+    aNodo* temp = root_1;
     while (temp != nullptr){
-        lNodo * temp2 = temp->val->head;
+        lNodo* temp2 = temp->val->head;
         while (temp2 != nullptr){
             if (temp2->val->nombre == pelicula){
                 return temp2->val;
@@ -175,18 +207,18 @@ Arboles::buscar_pelicula(string pelicula){
     return nullptr;
     */
 }
-Arboles::mejores_directores(int n){
+void Arboles::mejores_directores(int n){
     /*
-    aNodo * temp = root_2;
+    aNodo* temp = root_2;
     for (int i = 0; i < n; i++){
         cout << i+1 << ". " << temp->val->nombre_director << endl;
         temp = temp->der;
     }
     */
 }
-Arboles::peores_directores(int n){
+void Arboles::peores_directores(int n){
     /*
-    aNodo * temp = root_2;
+    aNodo* temp = root_2;
     for (int i = 0; i < size_1-n; i++){
         temp = temp->der;
     }

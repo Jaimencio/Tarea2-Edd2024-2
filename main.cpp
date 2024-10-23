@@ -25,4 +25,5 @@ int main(){
     }
     file.close(); //no se usara mas el archivo
     return 0;
+    //al momento de tener el constructor del director, creara una lista para cada uno de los directores con sus peliculas correspondientes
 } 
