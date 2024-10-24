@@ -107,24 +107,23 @@ void Director::mostrar_peliculas(){
 Arboles::Arboles(){
     /*
     //inicializa todos los parametros de ambos arboles en null
-    root_1 = nullptr;
-    curr_1 = nullptr;
-    size_1 = 0;
-    root_2 = nullptr;
-    curr_2 = nullptr;
-    size_2 = 0;
+    root_dir = nullptr;
+    curr_dir = nullptr;
+    size_dir = 0;
+    root_rat = nullptr;
+    curr_rat = nullptr;
+    size_rat = 0;
     */
 }
 Arboles::~Arboles(){
     /*
     //REVISAR ESTO!!!! BORRAR EN POST-ORDEN
-    aNodo* temp = root_1;
-    while (temp != nullptr){
-        aNodo* temp2 = temp;
-        temp = temp->der;
-        delete temp2;
+    aNodo* temp = root_dir;
+    if (temp == nullptr){
+        return;
     }
-    temp = root_2;
+    
+    temp = root_rat;
     while (temp != nullptr){
         aNodo* temp2 = temp;
         temp = temp->der;
@@ -140,35 +139,35 @@ void Arboles::insertar_pelicula(Pelicula * pelicula){
     nuevo->val->agregar_pelicula(pelicula);
     nuevo->izq = nullptr;
     nuevo->der = nullptr;
-    if (root_1 == nullptr){
-        root_1 = nuevo;
-        curr_1 = nuevo;
+    if (root_dir == nullptr){
+        root_dir = nuevo;
+        curr_dir = nuevo;
     } else {
-        curr_1 = root_1;
-        while (curr_1 != nullptr){
-            if (pelicula->director < curr_1->val->nombre_director){
-                if (curr_1->izq == nullptr){
-                    curr_1->izq = nuevo;
+        curr_dir = root_dir;
+        while (curr_dir != nullptr){
+            if (pelicula->director < curr_dir->val->nombre_director){
+                if (curr_dir->izq == nullptr){
+                    curr_dir->izq = nuevo;
                     break;
                 } else {
-                    curr_1 = curr_1->izq;
+                    curr_dir = curr_dir->izq;
                 }
             } else {
-                if (curr_1->der == nullptr){
-                    curr_1->der = nuevo;
+                if (curr_dir->der == nullptr){
+                    curr_dir->der = nuevo;
                     break;
                 } else {
-                    curr_1 = curr_1->der;
+                    curr_dir = curr_dir->der;
                 }
             }
         }
     }
-    size_1++;
+    size_dir++;
     */
 }
 void Arboles::copiar_arbol(){
     /*
-    aNodo* temp = root_1;
+    aNodo* temp = root_dir;
     while (temp != nullptr){
         insertar_pelicula(temp->val->head->val);
         temp = temp->der;
@@ -177,7 +176,7 @@ void Arboles::copiar_arbol(){
 }
 Director* Arboles::buscar_director(string director){
     /*
-    aNodo* temp = root_1;
+    aNodo* temp = root_dir;
     while (temp != nullptr){
         if (temp->val->nombre_director == director){
             return temp->val;
@@ -193,7 +192,7 @@ Director* Arboles::buscar_director(string director){
 }
 Pelicula* Arboles::buscar_pelicula(string pelicula){
     /*
-    aNodo* temp = root_1;
+    aNodo* temp = root_dir;
     while (temp != nullptr){
         lNodo* temp2 = temp->val->head;
         while (temp2 != nullptr){
@@ -209,7 +208,7 @@ Pelicula* Arboles::buscar_pelicula(string pelicula){
 }
 void Arboles::mejores_directores(int n){
     /*
-    aNodo* temp = root_2;
+    aNodo* temp = root_rat;
     for (int i = 0; i < n; i++){
         cout << i+1 << ". " << temp->val->nombre_director << endl;
         temp = temp->der;
@@ -218,12 +217,12 @@ void Arboles::mejores_directores(int n){
 }
 void Arboles::peores_directores(int n){
     /*
-    aNodo* temp = root_2;
+    aNodo* temp = root_rat;
     for (int i = 0; i < size_1-n; i++){
         temp = temp->der;
     }
     for (int i = 0; i < n; i++){
-        cout << size_1-i << ". " << temp->val->nombre_director << endl;
+        cout << size_dir-i << ". " << temp->val->nombre_director << endl;
         temp = temp->izq;
     }
     */

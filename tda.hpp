@@ -12,8 +12,8 @@ class Director {
 private :
     //nodo de lista enlazada
     struct lNodo {
-    Pelicula* val ;
-    lNodo* sig ;
+    Pelicula* val;
+    lNodo* sig;
     };
     Director (); // constructor
     ~ Director (); // destructor
@@ -22,10 +22,10 @@ private :
     lNodo* tail;
     size_t size; // longitud lista, o tambien cantidad de peliculas
     string nombre_director;
-    float rating_promedio;
+    float rating_promedio; //variable para calcular solo 1 vez el rating
 public:
     void agregar_pelicula ( Pelicula* pelicula ); // agrega pelicula al final de la lista enlazada
-    void ordenar () ; // ordena la lista de menor a mayor rating
+    void ordenar (); // ordena la lista de menor a mayor rating
     void calcular_rating_promedio ();
     void mostrar_peliculas ();
 };
@@ -38,15 +38,15 @@ private :
     aNodo* izq;
     aNodo* der;
     };
-    aNodo* root_1; // raiz arbol ordenado por directores
-    aNodo* curr_1;
-    size_t size_1;
-    aNodo* root_2; // raiz arbol ordenado por rating
-    aNodo* curr_2;
-    size_t size_2;
+    aNodo* root_dir; // raiz arbol ordenado por directores
+    aNodo* curr_dir;
+    size_t size_dir;
+    aNodo* root_rat; // raiz arbol ordenado por rating
+    aNodo* curr_rat;
+    size_t size_rat;
 public :
-    Arboles () ; // constructor
-    ~ Arboles () ; // destructor
+    Arboles (); // constructor
+    ~ Arboles (); // destructor
     void insertar_pelicula ( Pelicula* pelicula );
     void copiar_arbol (); // hace copia de arbol 1 en arbol 2 ordenado respecto de rating
     Director* buscar_director ( string director ); // retorna arreglo de peliculas
