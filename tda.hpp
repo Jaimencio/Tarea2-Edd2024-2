@@ -15,8 +15,6 @@ private :
     Pelicula* val;
     lNodo* sig;
     };
-    Director (); // constructor
-    ~ Director (); // destructor
     lNodo* head;
     lNodo* curr;
     lNodo* tail;
@@ -24,10 +22,13 @@ private :
     string nombre_director;
     float rating_promedio; //variable para calcular solo 1 vez el rating
 public:
+    Director (); // constructor
+    ~ Director (); // destructor
     void agregar_pelicula ( Pelicula* pelicula ); // agrega pelicula al final de la lista enlazada
     void ordenar (); // ordena la lista de menor a mayor rating
     void calcular_rating_promedio ();
     void mostrar_peliculas ();
+    string nombre();
 };
 
 class Arboles {
@@ -53,5 +54,6 @@ public :
     Pelicula* buscar_pelicula ( string pelicula ); // retorna peliculas
     void mejores_directores ( int n); // Muestra por pantalla los mejores n directores. Enumerando de 1 a n.
     void peores_directores ( int n ); // Muestra por pantalla los peores n directores.Enumerando desde m ( cantidad de directores ) hasta m-n.
+    void Podar(aNodo* root);
 };
-#endif // TDA_H
+#endif // TDA_H;

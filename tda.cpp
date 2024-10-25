@@ -4,18 +4,18 @@
 using namespace std;
 //todos estos metodos los hizo github copilot, asi que hay que revisarlos bien
 Director::Director(){
-    /*
+    
     //inicializa cada parametro en null de la clase
     head = nullptr;
     curr = nullptr;
     tail = nullptr;
     size = 0;
-    nombre_director = "";
+    nombre_director;
     rating_promedio = 0;
-    */
+    
 }
 Director::~Director(){
-    /*
+    
     //crea un nodo temporal al inicio de la lista
     lNodo* temp = head;
     //se crea un segundo nodo temporal para ir manteniendo el registro de la lista y elimina los nodos
@@ -31,15 +31,18 @@ Director::~Director(){
     size = 0;
     nombre_director = "";
     rating_promedio = 0;
-    */
+    
 }
 //agrega la pelicula de manera del append
 void Director::agregar_pelicula(Pelicula* pelicula){
-    /*
+    
     //crea un nuevo nodo de lista
     lNodo* nuevo = new lNodo;
     //le asigna la pelicula correspondiente al nodo
     nuevo->val = pelicula;
+    nuevo->val->nombre = pelicula->nombre;
+    nuevo->val->director = pelicula->director;
+    nuevo->val->rating = pelicula->rating;
     //hace la referencia al siguiente nodo en null
     nuevo->sig = nullptr;
     //si la lista esta vacia, el nuevo nodo es la cabeza y la cola
@@ -54,10 +57,10 @@ void Director::agregar_pelicula(Pelicula* pelicula){
     }
     //aumenta el tamaño de la lista
     size++;
-    */
+    
 }
 void Director::calcular_rating_promedio(){
-    /*
+    
     //crea un nodo temporal para comenzar la suma de ratings de todas las peliculas
     lNodo* temp = head;
     float suma = 0;
@@ -69,10 +72,10 @@ void Director::calcular_rating_promedio(){
     //saca el promedio
     rating_promedio = suma / size;
 
-    */
+    
 }
 void Director::ordenar(){
-    /*
+    
     //crea dos nodos en la cabeza de la lista
     lNodo* temp = head;
     lNodo* temp2 = head;
@@ -91,10 +94,10 @@ void Director::ordenar(){
         //tras recorrer toda la lista con el segundo nodo, se DESPLAZA en uno el PRIMER nodo
         temp = temp->sig;
     }
-    */
+    
 }
 void Director::mostrar_peliculas(){
-    /*
+    
     //crea un nodo temporal en la cabeza de la lista
     lNodo* temp = head;
     while (temp != nullptr){
@@ -102,10 +105,12 @@ void Director::mostrar_peliculas(){
         cout << temp->val->nombre << endl;
         temp = temp->sig;
     }
-    */
-} 
+    
+}
+string Director::nombre(){
+    return nombre_director;}
 Arboles::Arboles(){
-    /*
+    
     //inicializa todos los parametros de ambos arboles en null
     root_dir = nullptr;
     curr_dir = nullptr;
@@ -113,29 +118,30 @@ Arboles::Arboles(){
     root_rat = nullptr;
     curr_rat = nullptr;
     size_rat = 0;
-    */
+    
 }
 Arboles::~Arboles(){
-    /*
-    //REVISAR ESTO!!!! BORRAR EN POST-ORDEN
-    aNodo* temp = root_dir;
-    if (temp == nullptr){
-        return;
-    }
-    
+}
+void Arboles::Podar(aNodo* temp){
+	// Algoritmo recursivo, recorrido en postorden
+    if (temp = nullptr) return;
+    temp = root_dir;
+    aNodo* temp2 = root_rat;
+	Podar(root_dir->izq); // Podar izquierdo
+	Podar(root_dir->der);   // Podar derecho
+	delete root_dir;            // Eliminar nodo
+	root_dir = nullptr;
     temp = root_rat;
-    while (temp != nullptr){
-        aNodo* temp2 = temp;
-        temp = temp->der;
-        delete temp2;
-    }
-    */
+    Podar(root_rat->izq); // Podar izquierdo
+	Podar(root_rat->der);   // Podar derecho
+	delete root_rat;            // Eliminar nodo
+	root_rat = nullptr;
+
 }
 void Arboles::insertar_pelicula(Pelicula * pelicula){
-    /*
+    
     aNodo* nuevo = new aNodo;
     nuevo->val = new Director;
-    nuevo->val->nombre_director = pelicula->director;
     nuevo->val->agregar_pelicula(pelicula);
     nuevo->izq = nullptr;
     nuevo->der = nullptr;
@@ -163,19 +169,19 @@ void Arboles::insertar_pelicula(Pelicula * pelicula){
         }
     }
     size_dir++;
-    */
+    
 }
 void Arboles::copiar_arbol(){
-    /*
+
     aNodo* temp = root_dir;
     while (temp != nullptr){
         insertar_pelicula(temp->val->head->val);
+        temp = temp->izq
         temp = temp->der;
     }
-    */
 }
 Director* Arboles::buscar_director(string director){
-    /*
+    
     aNodo* temp = root_dir;
     while (temp != nullptr){
         if (temp->val->nombre_director == director){
@@ -188,7 +194,7 @@ Director* Arboles::buscar_director(string director){
         }
     }
     return nullptr;
-    */
+    
 }
 Pelicula* Arboles::buscar_pelicula(string pelicula){
     /*
