@@ -23,6 +23,7 @@ int main(){
         getline(file, linea); //obtener cada linea
         string nombre, director, rating_str;
         float rating;
+        stringstream ss(linea);
         // Separar los campos usando ';' como delimitador
         getline(ss, nombre,';');
         getline(ss, director,';');
@@ -42,7 +43,7 @@ int main(){
     Arboles arbol1;
 
     while (flag){
-        cout <<;
+        
         cin >> comando;
         if (comando == "e"){
             flag = false;
@@ -53,4 +54,5 @@ int main(){
     }
     return 0;
     //al momento de tener el constructor del director, creara una lista para cada uno de los directores con sus peliculas correspondientes
-} 
+}
+}
