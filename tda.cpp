@@ -212,6 +212,9 @@ void Arboles::copiar_arbol(){
         temp = temp->der;
     }
 }
+int Arboles::size(){
+    return size_dir;
+}
 
 Director* Arboles::buscar_director(string director){
     
@@ -248,26 +251,29 @@ Pelicula* Arboles::buscar_pelicula(string pelicula){
 
 
 void Arboles::mejores_directores(int n){
-    
-    aNodo* temp = root_rat;
-    for (int i = 0; i < n; i++){
-        if (temp == nullptr){
-            return;
-        }
-        inorden(root_rat->izq);
-
+    tCola cola;
+    void inonOrden(root_rat){
+        if (root_rat == nullptr) return;
+        inonOrden(root_rat->der);
+        cola.enqueue(root_rat->val);
+        inonOrden(root_rat->izq);
+    }
+    for(int i = 0; i < n; i++){
+        cout << cola.frontValue()->nombre_director << endl;
+        cola.dequeue();
     }
     
 }
 void Arboles::peores_directores(int n){
-    
-    aNodo* temp = root_rat;
-    for (int i = 0; i < size_1-n; i++){
-        temp = temp->der;
+    tCola cola;
+    void inonOrden(root_rat){
+        if (root_rat == nullptr) return;
+        inonOrden(root_rat->izq);
+        cola.enqueue(root_rat->val);
+        inonOrden(root_rat->der);
     }
-    for (int i = 0; i < n; i++){
-        cout << size_dir-i << ". " << temp->val->nombre_director << endl;
-        temp = temp->izq;
+    for(int i = 0; i < n; i++){
+        cout << cola.frontValue()->nombre_director << endl;
+        cola.dequeue();
     }
-    
 }

@@ -3,6 +3,7 @@
 #include <fstream>
 #include "tda.hpp"
 #include <sstream>
+#include <queue.cpp>
 //#MA10
 using namespace std;
 
@@ -48,7 +49,18 @@ int main(){
         preorden(root->der);
     }
 
-    Arboles arbol1;
+    Arboles arbol1,arbolcopy;
+
+    for (int i = 0; i < max_pelis; i++){
+        arbol1.insertar_pelicula(peliculas[i]);
+    }
+
+    void copy_arbol(aNodo* root, Arboles arbol){
+        for (int i = 0; i < arbol.size; i++){
+            arbolcopy.insertar_dir(root->val);
+        }
+    }
+
 
     while (flag){
         
@@ -62,11 +74,18 @@ int main(){
         } else if (comando == "br"){
             int n;
             getline(cin, n);
-
-
-            for (int i = 0; i < max_pelis; i++){
-                
+            arbol1.mejores_directores(n);
             }
+        } else if (comando == "sd"){
+            string director;
+            getline(cin, director);
+            Director* dir = arbol1.buscar_director(director);
+            dir->mostrar_peliculas();
+        } else if (comando == "wr"){
+            int n;
+            getline(cin, n);
+            arbol1.peores_directores(n);
+        }
 
         }
     return 0;
