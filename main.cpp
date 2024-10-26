@@ -40,6 +40,14 @@ int main(){
     for (int i = 0; i < max_pelis; i++){
         arbol1.insertar_pelicula(peliculas[i]);
     }
+
+    aNodo preorden(aNodo* root){
+        if (root == nullptr) return;
+        ;
+        preorden(root->izq);
+        preorden(root->der);
+    }
+
     Arboles arbol1;
 
     while (flag){
@@ -51,7 +59,16 @@ int main(){
             string nombre_peli;
             getline(cin, nombre_peli);
             Pelicula* peli = arbol1.buscar_pelicula(nombre_peli);
-    }
+        } else if (comando == "br"){
+            int n;
+            getline(cin, n);
+
+
+            for (int i = 0; i < max_pelis; i++){
+                
+            }
+
+        }
     return 0;
     //al momento de tener el constructor del director, creara una lista para cada uno de los directores con sus peliculas correspondientes
 }

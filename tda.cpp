@@ -132,6 +132,7 @@ void Arboles::borrarNodo(aNodo* nodo) {
         borrarNodo(nodo->der);
         delete nodo;
 }
+
 void Arboles::insertar_pelicula(Pelicula * pelicula){
     
     aNodo* nuevo = new aNodo;
@@ -166,7 +167,43 @@ void Arboles::insertar_pelicula(Pelicula * pelicula){
     size_dir++;
     
 }
+void Arboles::insertar_dir(Director* director){
+        
+    aNodo* nuevo = new aNodo;
+    nuevo->val = director;
+    nuevo->izq = nullptr;
+    nuevo->der = nullptr;
+    curr_rat = root_rat;
+    while (curr_rat != nullptr){
+        if (director->rating_promedio < curr_rat->val->rating_promedio){
+            if (curr_rat->izq == nullptr){
+                curr_rat->izq = nuevo;
+                break;
+            } else {
+                curr_rat = curr_rat->izq;
+            }
+            if (curr_rat->der == nullptr){
+                curr_rat->der = nuevo;
+                break;
+            } else {
+                curr_rat = curr_rat->der;
+            }
+        }
+    }
+        size_rat++;
+}
+
 void Arboles::copiar_arbol(){
+    if (root == nullptr) return;
+    Arboles *arbol = new Arboles();
+
+    void preorden(aNodo* root){
+        if (root == nullptr) return;
+            aNodo* nuevo = new aNodo;
+            nuevo->val = root->val;
+            nuevo->izq = preorden(root->izq);
+            nuevo->der = preorden(root->der);
+    }
 
     aNodo* temp = root_dir;
     while (temp != nullptr){
@@ -175,6 +212,7 @@ void Arboles::copiar_arbol(){
         temp = temp->der;
     }
 }
+
 Director* Arboles::buscar_director(string director){
     
     aNodo* temp = root_dir;
@@ -207,17 +245,22 @@ Pelicula* Arboles::buscar_pelicula(string pelicula){
     return nullptr;
     */
 }
+
+
 void Arboles::mejores_directores(int n){
-    /*
+    
     aNodo* temp = root_rat;
     for (int i = 0; i < n; i++){
-        cout << i+1 << ". " << temp->val->nombre_director << endl;
-        temp = temp->der;
+        if (temp == nullptr){
+            return;
+        }
+        inorden(root_rat->izq);
+
     }
-    */
+    
 }
 void Arboles::peores_directores(int n){
-    /*
+    
     aNodo* temp = root_rat;
     for (int i = 0; i < size_1-n; i++){
         temp = temp->der;
@@ -226,5 +269,5 @@ void Arboles::peores_directores(int n){
         cout << size_dir-i << ". " << temp->val->nombre_director << endl;
         temp = temp->izq;
     }
-    */
+    
 }
