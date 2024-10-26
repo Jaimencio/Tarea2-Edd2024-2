@@ -108,7 +108,9 @@ void Director::mostrar_peliculas(){
     
 }
 string Director::nombre(){
-    return nombre_director;}
+    return nombre_director;
+}
+
 Arboles::Arboles(){
     
     //inicializa todos los parametros de ambos arboles en null
@@ -121,22 +123,14 @@ Arboles::Arboles(){
     
 }
 Arboles::~Arboles(){
+    borrarNodo(root_dir);
+    borrarNodo(root_rat);
 }
-void Arboles::Podar(aNodo* temp){
-	// Algoritmo recursivo, recorrido en postorden
-    if (temp = nullptr) return;
-    temp = root_dir;
-    aNodo* temp2 = root_rat;
-	Podar(root_dir->izq); // Podar izquierdo
-	Podar(root_dir->der);   // Podar derecho
-	delete root_dir;            // Eliminar nodo
-	root_dir = nullptr;
-    temp = root_rat;
-    Podar(root_rat->izq); // Podar izquierdo
-	Podar(root_rat->der);   // Podar derecho
-	delete root_rat;            // Eliminar nodo
-	root_rat = nullptr;
-
+void Arboles::borrarNodo(aNodo* nodo) {
+        if (nodo == nullptr) return;
+        borrarNodo(nodo->izq);
+        borrarNodo(nodo->der);
+        delete nodo;
 }
 void Arboles::insertar_pelicula(Pelicula * pelicula){
     
@@ -145,6 +139,7 @@ void Arboles::insertar_pelicula(Pelicula * pelicula){
     nuevo->val->agregar_pelicula(pelicula);
     nuevo->izq = nullptr;
     nuevo->der = nullptr;
+    
     if (root_dir == nullptr){
         root_dir = nuevo;
         curr_dir = nuevo;
