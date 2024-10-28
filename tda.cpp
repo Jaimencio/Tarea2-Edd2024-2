@@ -249,20 +249,20 @@ Pelicula* Arboles::buscar_pelicula(string pelicula) {
     return nullptr;
 }
 
-void Arboles::inonOrden(aNodo* nodo, tCola& cola){
+void Arboles::inonOrden(aNodo* nodo, tCola cola){
     if (nodo == nullptr) return;
     inonOrden(nodo->der, cola);
     cola.enqueue(nodo->val);
     inonOrden(nodo->izq, cola);
 }
 void Arboles::mejores_directores(int n){
-    tCola cola;
-    inonOrden(root_rat ,cola);
+    tCola* cola;
+    inonOrden(root_rat,cola);
     for(int i = 0; i < n; i++){
-        if (cola.size() != 0){
-            Director* dir = cola.frontValue();
+        if (cola->size() != 0){
+            Director* dir = cola->frontValue();
             cout << dir->nombre() << endl;
-            cola.dequeue();
+            cola->dequeue();
         }
     }
     
@@ -270,12 +270,14 @@ void Arboles::mejores_directores(int n){
 
 
 void Arboles::peores_directores(int n){
-    tCola cola2;
-    inonOrden(root_rat ,cola);
+    tCola* cola2;
+    inonOrden(root_rat, cola2);
     for(int i = 0; i < n; i++){
-        Director* dir = cola2.frontValue();
-        cout << temp->nombre_director << endl;
-        cola2.dequeue();
-    }
+        if (cola2->size() != 0){
+            Director* dir = cola2->frontValue();
+            cout << dir->nombre() << endl;
+            cola2->dequeue();
+        }
+}
 }
 
