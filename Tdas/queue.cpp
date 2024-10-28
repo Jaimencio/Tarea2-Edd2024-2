@@ -37,14 +37,13 @@ int tCola::enqueue (tElemCola item){
 
 // elimina el elemento que está en el frente cola
 void tCola::dequeue (){
-  if( length == 0 ) return;
+
   first = (first + 1)%maxSize;
   length--;
 }
 
 // retorna una copia del elemento que está en el frente de la cola
 tElemCola tCola::frontValue (){
-  if( length == 0 ) return;
   return queueArray[first];
 }
 

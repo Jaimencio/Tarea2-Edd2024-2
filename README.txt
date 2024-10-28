@@ -19,3 +19,4 @@ CONSIDERACIONES AL MOMENTO DE EJECUTAR
 --------------------------------------------------------------------
 -Los punteros relacionados a los árboles fueron renombrados a puntero_dir y puntero_rat,+
  para evitar confusiones al momento de escribir
+-La carpeta de Tdas son todos creados por el profesor Roberto Diaz

@@ -29,6 +29,7 @@ public:
     void calcular_rating_promedio ();
     void mostrar_peliculas ();
     string nombre();
+    lNodo* get_head() const { return head; }
 
 };
 
@@ -59,7 +60,8 @@ public :
     int size();
     void borrarNodo(aNodo* nodo);
     void copiar_arbol_rec(aNodo* nodo);
-    void insertar_dir(Director* director);
+    //void insertar_dir(Director* director);
+    void inonOrden(aNodo* nodo, tCola& cola);
 
 };
 #endif // TDA_H;

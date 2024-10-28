@@ -165,6 +165,7 @@ void Arboles::insertar_pelicula(Pelicula * pelicula){
     }
     size_dir++;
 }
+/*
 void Arboles::insertar_dir(Director* director){
         
     aNodo* nuevo = new aNodo;
@@ -196,7 +197,7 @@ void Arboles::insertar_dir(Director* director){
         size_rat++;
 }
 }
-
+*/
 void Arboles::copiar_arbol() {
     if (root_dir == nullptr) return;
     copiar_arbol_rec(root_dir);
@@ -229,12 +230,12 @@ Director* Arboles::buscar_director(string director){
     
 }
 
-Pelicula* Arboles::buscar_pelicula(string pelicula){
+Pelicula* Arboles::buscar_pelicula(string pelicula) {
     aNodo* temp = root_dir;
-    while (temp != nullptr){
-        lNodo* temp2 = temp->val->head;
-        while (temp2 != nullptr){
-            if (temp2->val->nombre == pelicula){
+    while (temp != nullptr) {
+        lNodo* temp2 = temp->val->get_head();
+        while (temp2 != nullptr) {
+            if (temp2->val->nombre == pelicula) {
                 return temp2->val;
             }
             temp2 = temp2->sig;
@@ -245,27 +246,22 @@ Pelicula* Arboles::buscar_pelicula(string pelicula){
             temp = temp->der;
         }
     }
-    return nullptr; 
+    return nullptr;
 }
 
-void inonOrden(aNodo* nodo, tCola& cola){
-    if (root_rat == nullptr) return;
-    inonOrden(root_rat->izq);
-    cola.enqueue(root_rat->val);
-    inonOrden(root_rat->der);
+void Arboles::inonOrden(aNodo* nodo, tCola& cola){
+    if (nodo == nullptr) return;
+    inonOrden(nodo->der, cola);
+    cola.enqueue(nodo->val);
+    inonOrden(nodo->izq, cola);
 }
 void Arboles::mejores_directores(int n){
     tCola cola;
-    void inonOrden(root_rat, cola);{
-        if (root_rat == nullptr) return;
-        inonOrden(root_rat->der);
-        cola.enqueue(root_rat->val);
-        inonOrden(root_rat->izq);
-    }
+    inonOrden(root_rat ,cola);
     for(int i = 0; i < n; i++){
         if (cola.size() != 0){
-            Pelicula temp = cola.frontValue();
-            cout << temp->nombre_director << endl;
+            Director* dir = cola.frontValue();
+            cout << dir->nombre() << endl;
             cola.dequeue();
         }
     }
@@ -274,12 +270,12 @@ void Arboles::mejores_directores(int n){
 
 
 void Arboles::peores_directores(int n){
-    tCola cola;
+    tCola cola2;
     inonOrden(root_rat ,cola);
     for(int i = 0; i < n; i++){
-        Pelicula temp = cola.frontValue();
+        Director* dir = cola2.frontValue();
         cout << temp->nombre_director << endl;
-        cola.dequeue();
+        cola2.dequeue();
     }
 }
 

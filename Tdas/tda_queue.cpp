@@ -2,9 +2,9 @@
 #include "tda_arraylist.cpp"
 
 //#define INVALID_ELEMENT std::numeric_limits<int>::min()
-#define MAXIMOQUEUE 100
+#define MAXIMOQUEUE 3000
 
-typedef Pelicula tElemCola;
+typedef Director* tElemCola;
 //typedef char tElemCola;
 
 class tCola {

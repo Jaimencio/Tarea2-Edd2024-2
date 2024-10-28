@@ -3,7 +3,7 @@
 #define MAXSIZE 1000000
 #define INVALID_ELEMENT std::numeric_limits<int>::min()
 
-typedef int tElemLista;
+typedef Director* tElemLista;
 
 class tLista {
   private:
