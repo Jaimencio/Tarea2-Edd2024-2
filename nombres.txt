@@ -1,0 +1,5 @@
+Victoria Medina, Paralelo 200, Rol 202373586-8. 
+Programo los metodos para la clase arboles y la otra parte del main
+Jaime Arias, Paralelo 203, Rol 202373537-k. 
+Programo los metodos para la clase director y parte del main
+Comento el main, y escribio nombres.txt a la vez que el README.txt
