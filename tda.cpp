@@ -278,6 +278,6 @@ void Arboles::peores_directores(int n){
             cout << dir->nombre() << endl;
             cola2->dequeue();
         }
-}
+    }
 }
 
