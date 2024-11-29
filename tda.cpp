@@ -3,7 +3,6 @@
 #include <string>
 #include "Tdas/queue.cpp"
 using namespace std;
-//todos estos metodos los hizo github copilot, asi que hay que revisarlos bien
 Director::Director(){
     
     //inicializa cada parametro en null de la clase
@@ -165,50 +164,50 @@ void Arboles::insertar_pelicula(Pelicula * pelicula){
     }
     size_dir++;
 }
-/*
-void Arboles::insertar_dir(Director* director){
+
+// void Arboles::insertar_dir(Director* director){
         
-    aNodo* nuevo = new aNodo;
-    nuevo->val = director;
-    nuevo->izq = nullptr;
-    nuevo->der = nullptr;
-    curr_rat = root_rat;
-      if (root_rat == nullptr) {
-        root_rat = nuevo;
-        curr_rat = nuevo;
-    } else {
-        curr_rat = root_rat;
-        while (curr_rat != nullptr){
-            if (director->rating_promedio < curr_rat->val->rating_promedio){
-                if (curr_rat->izq == nullptr){
-                    curr_rat->izq = nuevo;
-                    break;
-                } else {
-                    curr_rat = curr_rat->izq;
-                }
-                if (curr_rat->der == nullptr){
-                    curr_rat->der = nuevo;
-                    break;
-                } else {
-                    curr_rat = curr_rat->der;
-                }
-            }
-        }
-        size_rat++;
-}
-}
-*/
+//     aNodo* nuevo = new aNodo;
+//     nuevo->val = director;
+//     nuevo->izq = nullptr;
+//     nuevo->der = nullptr;
+//     curr_rat = root_rat;
+//       if (root_rat == nullptr) {
+//         root_rat = nuevo;
+//         curr_rat = nuevo;
+//     } else {
+//         curr_rat = root_rat;
+//         while (curr_rat != nullptr){
+//             if (director->rating_promedio < curr_rat->val->rating_promedio){
+//                 if (curr_rat->izq == nullptr){
+//                     curr_rat->izq = nuevo;
+//                     break;
+//                 } else {
+//                     curr_rat = curr_rat->izq;
+//                 }
+//                 if (curr_rat->der == nullptr){
+//                     curr_rat->der = nuevo;
+//                     break;
+//                 } else {
+//                     curr_rat = curr_rat->der;
+//                 }
+//             }
+//         }
+//         size_rat++;
+// }
+// }
+
 void Arboles::copiar_arbol() {
-    if (root_dir == nullptr) return;
-    copiar_arbol_rec(root_dir);
+    // if (root_dir == nullptr) return;
+    // copiar_arbol_rec(root_dir);
 }
 
-void Arboles::copiar_arbol_rec(aNodo* nodo) {
-    if (nodo == nullptr) return;
-    insertar_dir(nodo->val);
-    copiar_arbol_rec(nodo->izq);
-    copiar_arbol_rec(nodo->der);
-}
+// void Arboles::copiar_arbol_rec(aNodo* nodo) {
+//     if (nodo == nullptr) return;
+//     insertar_dir(nodo->val);
+//     copiar_arbol_rec(nodo->izq);
+//     copiar_arbol_rec(nodo->der);
+// }
     
 int Arboles::size(){
     return size_dir;
@@ -232,32 +231,33 @@ Director* Arboles::buscar_director(string director){
 
 Pelicula* Arboles::buscar_pelicula(string pelicula) {
     aNodo* temp = root_dir;
-    while (temp != nullptr) {
-        lNodo* temp2 = temp->val->get_head();
-        while (temp2 != nullptr) {
-            if (temp2->val->nombre == pelicula) {
-                return temp2->val;
-            }
-            temp2 = temp2->sig;
-        }
-        if (pelicula < temp->val->nombre_director) {
-            temp = temp->izq;
-        } else {
-            temp = temp->der;
-        }
-    }
+    Director director;
+    // while (temp != nullptr) {
+    //     director->head = temp->val->get_head();
+    //     while (temp2 != nullptr) {
+    //         if (temp2->val->nombre == pelicula) {
+    //             return temp2->val;
+    //         }
+    //         temp2 = temp2->sig;
+    //     }
+    //     if (pelicula < temp->val->nombre_director) {
+    //         temp = temp->izq;
+    //     } else {
+    //         temp = temp->der;
+    //     }
+    // }
     return nullptr;
 }
 
-void Arboles::inonOrden(aNodo* nodo, tCola cola){
-    if (nodo == nullptr) return;
-    inonOrden(nodo->der, cola);
-    cola.enqueue(nodo->val);
-    inonOrden(nodo->izq, cola);
-}
+// void Arboles::inonOrden(aNodo* nodo, tCola cola){
+//     if (nodo == nullptr) return;
+//     inonOrden(nodo->der, cola);
+//     cola.enqueue(nodo->val);
+//     inonOrden(nodo->izq, cola);
+// }
 void Arboles::mejores_directores(int n){
     tCola* cola;
-    inonOrden(root_rat,cola);
+    //inonOrden(root_rat,cola);
     for(int i = 0; i < n; i++){
         if (cola->size() != 0){
             Director* dir = cola->frontValue();
@@ -271,7 +271,7 @@ void Arboles::mejores_directores(int n){
 
 void Arboles::peores_directores(int n){
     tCola* cola2;
-    inonOrden(root_rat, cola2);
+    //inonOrden(root_rat, cola2);
     for(int i = 0; i < n; i++){
         if (cola2->size() != 0){
             Director* dir = cola2->frontValue();
